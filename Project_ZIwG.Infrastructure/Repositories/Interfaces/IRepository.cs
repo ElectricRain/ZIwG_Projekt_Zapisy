@@ -6,14 +6,14 @@ namespace Project_ZIwG.Infrastructure.Interfaces
 {
     public interface IRepository<T>
     {
-        Task<T> GetAsync();
+         T Get(Guid entityId);
 
-        Task<IEnumerable<T>> GetListAsync();
+         IEnumerable<T> GetList();
 
-        Task CreateAsync(T entity);
+         void Create(T entity);
 
-        Task DeleteAsync(Guid entityId);
+         void Delete(Guid entityId);
 
-        Task UpdateAsync(T entity);
+         void Update(T entity);
     }
 }

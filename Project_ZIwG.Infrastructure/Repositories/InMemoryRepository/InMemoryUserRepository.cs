@@ -2,35 +2,55 @@
 using Project_ZIwG.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace Project_ZIwG.Infrastructure.Repositories.InMemoryRepository
 {
     public class InMemoryUserRepository : IUserRepository
     {
-        public Task CreateAsync(UserEntity entity)
+        private List<UserEntity> _userRepository;
+        public InMemoryUserRepository()
         {
-            throw new NotImplementedException();
+            AddTemplateEntities();
         }
 
-        public Task DeleteAsync(Guid entityId)
+        public void Create(UserEntity entity)
         {
-            throw new NotImplementedException();
+            _userRepository.Add(entity);
         }
 
-        public Task<UserEntity> GetAsync()
+        public void Delete(Guid entityId)
         {
-            throw new NotImplementedException();
+            _userRepository.RemoveAll(x => x.Id == entityId);
         }
 
-        public Task<IEnumerable<UserEntity>> GetListAsync()
+        public UserEntity Get(Guid entityId)
         {
-            throw new NotImplementedException();
+            var user = _userRepository.FirstOrDefault(x => x.Id == entityId);
+            return user;
         }
 
-        public Task UpdateAsync(UserEntity entity)
+        public IEnumerable<UserEntity> GetList()
         {
-            throw new NotImplementedException();
+            foreach(var user in _userRepository)
+            {
+                yield return user;
+            }
+        }
+
+        public void Update(UserEntity entity)
+        {
+            var user = _userRepository.FirstOrDefault(x => x.Id == entity.Id);
+            user.Name = entity.Name;
+            user.Password = entity.Password;
+            user.Surname = entity.Surname;
+            user.EmailAddress = entity.EmailAddress;
+        }
+
+        private void AddTemplateEntities()
+        {
+            Create(new UserEntity("Admin", "Admin", "Admin", "Admin@pwr.edu.pl"));
+            Create(new UserEntity("User", "User", "User", "User@pwr.edu.pl"));
         }
     }
 }

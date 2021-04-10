@@ -2,35 +2,44 @@
 using Project_ZIwG.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace Project_ZIwG.Infrastructure.Repositories.InMemoryRepository
 {
-    class InMemoryCourseRepository : ICourseRepository
+    public class InMemoryCourseRepository : ICourseRepository
     {
-        public Task CreateAsync(CourseEntity entity)
+        private List<CourseEntity> _courseEntities;
+
+        public void Create(CourseEntity entity)
         {
-            throw new NotImplementedException();
+            _courseEntities.Add(entity);
         }
 
-        public Task DeleteAsync(Guid entityId)
+        public void Delete(Guid entityId)
         {
-            throw new NotImplementedException();
+            _courseEntities.RemoveAll(x => x.Id == entityId);
         }
 
-        public Task<CourseEntity> GetAsync()
+        public CourseEntity Get(Guid entityId)
         {
-            throw new NotImplementedException();
+            var course = _courseEntities.FirstOrDefault(x => x.Id == entityId);
+            return course;
         }
 
-        public Task<IEnumerable<CourseEntity>> GetListAsync()
+        public IEnumerable<CourseEntity> GetList()
         {
-            throw new NotImplementedException();
+            foreach(var course in _courseEntities)
+            {
+                yield return course;
+            }
         }
 
-        public Task UpdateAsync(CourseEntity entity)
+        public void Update(CourseEntity entity)
         {
-            throw new NotImplementedException();
+            var course = _courseEntities.FirstOrDefault(x => x.Id == entity.Id);
+            course.Description = entity.Description;
+            course.CourseName = entity.CourseName;
+            course.CourseCode = entity.CourseCode;
         }
     }
 }

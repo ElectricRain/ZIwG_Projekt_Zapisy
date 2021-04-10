@@ -2,35 +2,46 @@
 using Project_ZIwG.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace Project_ZIwG.Infrastructure.Repositories.InMemoryRepository
 {
-    class InMemorySubjectRepository : ISubjectRepository
+    public class InMemorySubjectRepository : ISubjectRepository
     {
-        public Task CreateAsync(SubjectEntity entity)
+        private List<SubjectEntity> _subjectEntities; 
+        public void Create(SubjectEntity entity)
         {
-            throw new NotImplementedException();
+            _subjectEntities.Add(entity);
         }
 
-        public Task DeleteAsync(Guid entityId)
+        public void Delete(Guid entityId)
         {
-            throw new NotImplementedException();
+            _subjectEntities.RemoveAll(x => x.Id == entityId);
         }
 
-        public Task<SubjectEntity> GetAsync()
+        public SubjectEntity Get(Guid entityId)
         {
-            throw new NotImplementedException();
+            var subject = _subjectEntities.FirstOrDefault(x => x.Id == entityId);
+            return subject;
         }
 
-        public Task<IEnumerable<SubjectEntity>> GetListAsync()
+        public IEnumerable<SubjectEntity> GetList()
         {
-            throw new NotImplementedException();
+            foreach(var subject in _subjectEntities)
+            {
+                yield return subject;
+            }
         }
 
-        public Task UpdateAsync(SubjectEntity entity)
+        public void Update(SubjectEntity entity)
         {
-            throw new NotImplementedException();
+            var subject = _subjectEntities.FirstOrDefault(x => x.Id == entity.Id);
+            subject.Type = entity.Type;
+            subject.StartHour = entity.StartHour;
+            subject.EndHour = entity.EndHour;
+            subject.Day = entity.Day;
+            subject.CourseId = entity.CourseId;
+            subject.Parity = entity.Parity;
         }
     }
 }
