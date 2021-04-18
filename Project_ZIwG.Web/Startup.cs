@@ -26,6 +26,7 @@ namespace Project_ZIwG.Web
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
+                options.AccessDeniedPath = "/denied";
                 options.LoginPath = "/login";
             });
         }

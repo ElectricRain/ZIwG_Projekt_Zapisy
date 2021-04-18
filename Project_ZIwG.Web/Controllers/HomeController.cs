@@ -32,7 +32,7 @@ namespace Project_ZIwG.Web.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Secured()
         {
             return View();
@@ -48,9 +48,20 @@ namespace Project_ZIwG.Web.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Validate(string username, string password, string returnUrl)
         {
-            //tu sprawdzic czy mozna zalogowac
+            //tu sprawdzic czy mozna zalogowac przeniesc do buissness logic
             ViewData["ReturnUrl"] = returnUrl;
-            if (username == "bob0" && password == "tst")
+            if (username == "admin" && password == "test")
+            {
+                var claims = new List<Claim>();
+                claims.Add(new Claim("username", username));
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, username));
+                claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                await HttpContext.SignInAsync(claimsPrincipal);
+                return Redirect(returnUrl);
+            }
+            if (username == "user" && password == "test")
             {
                 var claims = new List<Claim>();
                 claims.Add(new Claim("username", username));
@@ -75,6 +86,12 @@ namespace Project_ZIwG.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet("denied")]
+        public IActionResult Denied()
+        {
+            return View();
         }
     }
 }
