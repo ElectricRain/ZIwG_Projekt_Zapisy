@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Project_ZIwG.Domain.Auth;
+using Project_ZIwG.Domain.Auth.Interfaces;
+using Project_ZIwG.Infrastructure.Interfaces;
+using Project_ZIwG.Infrastructure.Repositories.InMemoryRepository;
 
 namespace Project_ZIwG.Web
 {
@@ -29,6 +29,10 @@ namespace Project_ZIwG.Web
                 options.AccessDeniedPath = "/denied";
                 options.LoginPath = "/login";
             });
+
+            services.AddScoped<IUserRepository, InMemoryUserRepository>();
+
+            services.AddScoped<IAuthenticator, Authenticator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

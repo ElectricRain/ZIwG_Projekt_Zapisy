@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Project_ZIwG.Domain.Auth.Interfaces;
 using Project_ZIwG.Web.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Project_ZIwG.Web.Controllers
@@ -16,10 +12,12 @@ namespace Project_ZIwG.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IAuthenticator _authenticator;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IAuthenticator authenticator)
         {
             _logger = logger;
+            _authenticator = authenticator;
         }
 
         public IActionResult Index()
@@ -50,24 +48,9 @@ namespace Project_ZIwG.Web.Controllers
         {
             //tu sprawdzic czy mozna zalogowac przeniesc do buissness logic
             ViewData["ReturnUrl"] = returnUrl;
-            if (username == "admin" && password == "test")
-            {
-                var claims = new List<Claim>();
-                claims.Add(new Claim("username", username));
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, username));
-                claims.Add(new Claim(ClaimTypes.Role, "Admin"));
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                await HttpContext.SignInAsync(claimsPrincipal);
-                return Redirect(returnUrl);
-            }
-            if (username == "user" && password == "test")
-            {
-                var claims = new List<Claim>();
-                claims.Add(new Claim("username", username));
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, username));
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+            var claimsPrincipal = _authenticator.GetUserClaimsPrincipal(username, password);
+            if(claimsPrincipal is not null)
+            { 
                 await HttpContext.SignInAsync(claimsPrincipal);
                 return Redirect(returnUrl);
             }

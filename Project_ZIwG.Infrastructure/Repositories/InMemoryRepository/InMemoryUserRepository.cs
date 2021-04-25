@@ -8,9 +8,9 @@ namespace Project_ZIwG.Infrastructure.Repositories.InMemoryRepository
 {
     public class InMemoryUserRepository : IUserRepository
     {
-        private List<UserEntity> _userRepository;
+        private List<UserEntity> _userRepository = new List<UserEntity>();
         public InMemoryUserRepository()
-        {
+        {            
             AddTemplateEntities();
         }
 
@@ -27,6 +27,12 @@ namespace Project_ZIwG.Infrastructure.Repositories.InMemoryRepository
         public UserEntity Get(Guid entityId)
         {
             var user = _userRepository.FirstOrDefault(x => x.Id == entityId);
+            return user;
+        }
+
+        public UserEntity GetByUsername(string username)
+        {
+            var user = _userRepository.FirstOrDefault(x => x.Name == username);
             return user;
         }
 

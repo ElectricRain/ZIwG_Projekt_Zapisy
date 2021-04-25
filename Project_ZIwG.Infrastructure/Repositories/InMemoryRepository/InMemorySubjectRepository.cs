@@ -8,7 +8,7 @@ namespace Project_ZIwG.Infrastructure.Repositories.InMemoryRepository
 {
     public class InMemorySubjectRepository : ISubjectRepository
     {
-        private List<SubjectEntity> _subjectEntities; 
+        private List<SubjectEntity> _subjectEntities = new List<SubjectEntity>(); 
         public void Create(SubjectEntity entity)
         {
             _subjectEntities.Add(entity);

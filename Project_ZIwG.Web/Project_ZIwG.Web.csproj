@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Project_ZIwG.Domain\Project_ZIwG.Domain.csproj" />
+    <ProjectReference Include="..\Project_ZIwG.Infrastructure\Project_ZIwG.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
