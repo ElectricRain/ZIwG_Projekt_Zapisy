@@ -46,7 +46,6 @@ namespace Project_ZIwG.Web.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Validate(string username, string password, string returnUrl)
         {
-            //tu sprawdzic czy mozna zalogowac przeniesc do buissness logic
             ViewData["ReturnUrl"] = returnUrl;
             var claimsPrincipal = _authenticator.GetUserClaimsPrincipal(username, password);
             if(claimsPrincipal is not null)
