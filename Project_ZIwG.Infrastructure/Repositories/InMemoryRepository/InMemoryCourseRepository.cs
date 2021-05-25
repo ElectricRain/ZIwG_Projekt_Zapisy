@@ -8,7 +8,7 @@ namespace Project_ZIwG.Infrastructure.Repositories.InMemoryRepository
 {
     public class InMemoryCourseRepository : ICourseRepository
     {
-        private List<CourseEntity> _courseEntities;
+        private List<CourseEntity> _courseEntities = new List<CourseEntity>();
 
         public void Create(CourseEntity entity)
         {
