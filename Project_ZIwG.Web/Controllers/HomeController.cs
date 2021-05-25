@@ -38,7 +38,7 @@ namespace Project_ZIwG.Web.Controllers
         }
 
         [HttpGet("token")]
-        public JwtSecurityToken Token(string username, string password)
+        public string Token(string username, string password)
         {
             return _authenticator.GetSecurityToken(username, password);
         }
