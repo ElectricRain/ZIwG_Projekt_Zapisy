@@ -37,8 +37,7 @@ namespace Project_ZIwG.Domain.Auth
             }
             var user = _userRepository.GetByUsername(username);
             var token = CreateJwtToken(user.Id.ToString());
-            var tokenHandler = new JwtSecurityTokenHandler();
-            string tokenString = tokenHandler.WriteToken(token);
+            string tokenString = new JwtSecurityTokenHandler().WriteToken(token);
             return tokenString;
         }
 
