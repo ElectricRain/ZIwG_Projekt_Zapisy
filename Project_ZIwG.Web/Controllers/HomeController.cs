@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Project_ZIwG.Domain.Auth.Interfaces;
 using Project_ZIwG.Web.Models;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 
 namespace Project_ZIwG.Web.Controllers
@@ -34,6 +35,12 @@ namespace Project_ZIwG.Web.Controllers
         public IActionResult Secured()
         {
             return View();
+        }
+
+        [HttpGet("token")]
+        public JwtSecurityToken Token(string username, string password)
+        {
+            return _authenticator.GetSecurityToken(username, password);
         }
 
         [HttpGet("login")]
