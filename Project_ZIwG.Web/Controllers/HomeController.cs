@@ -38,7 +38,7 @@ namespace Project_ZIwG.Web.Controllers
         }
 
         [HttpGet("token")]
-        public JwtSecurityToken Token(string username, string password)
+        public string Token(string username, string password)
         {
             return _authenticator.GetSecurityToken(username, password);
         }
@@ -75,6 +75,11 @@ namespace Project_ZIwG.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Swagger()
+        {
+            return Redirect("/swagger");
         }
 
         [HttpGet("denied")]

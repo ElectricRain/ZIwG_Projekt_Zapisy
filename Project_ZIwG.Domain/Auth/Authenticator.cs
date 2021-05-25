@@ -14,12 +14,10 @@ namespace Project_ZIwG.Domain.Auth
     public class Authenticator : IAuthenticator
     {
         private readonly IUserRepository _userRepository;
-        private readonly IConfiguration _configuration;
 
-        public Authenticator(IUserRepository userRepository, IConfiguration configuration)
+        public Authenticator(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _configuration = configuration;
         }
 
         public ClaimsPrincipal GetUserClaimsPrincipal(string username, string password)
@@ -31,14 +29,16 @@ namespace Project_ZIwG.Domain.Auth
             return GetClaimsPrincipal(username);
         }
 
-        public JwtSecurityToken GetSecurityToken(string username, string password)
+        public string GetSecurityToken(string username, string password)
         {
             if (!CheckUser(username, password))
             {
                 return null;
             }
             var user = _userRepository.GetByUsername(username);
-            return CreateJwtToken(user.Id.ToString());
+            var token = CreateJwtToken(user.Id.ToString());
+            string tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            return tokenString;
         }
 
         private bool CheckUser(string username, string password)

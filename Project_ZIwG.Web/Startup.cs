@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Project_ZIwG.Domain.Auth;
 using Project_ZIwG.Domain.Auth.Interfaces;
+using Project_ZIwG.Domain.UserGetter;
 using Project_ZIwG.Infrastructure.Interfaces;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository.Context;
@@ -38,6 +39,9 @@ namespace Project_ZIwG.Web
             services.AddScoped<IUserRepository, EFUserRepository>();
 
             services.AddScoped<IAuthenticator, Authenticator>();
+            services.AddScoped<UserGetter>();
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +66,16 @@ namespace Project_ZIwG.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
     }
