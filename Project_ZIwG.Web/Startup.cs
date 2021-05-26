@@ -7,11 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Project_ZIwG.Domain.Auth;
 using Project_ZIwG.Domain.Auth.Interfaces;
+using Project_ZIwG.Domain.Auth.Models;
 using Project_ZIwG.Domain.UserGetter;
 using Project_ZIwG.Infrastructure.Interfaces;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository.Context;
-using Project_ZIwG.Infrastructure.Repositories.InMemoryRepository;
 
 namespace Project_ZIwG.Web
 {
@@ -35,6 +35,7 @@ namespace Project_ZIwG.Web
                 options.AccessDeniedPath = "/denied";
                 options.LoginPath = "/login";
             });
+            services.Configure<AuthSecrets>(Configuration.GetSection(nameof(AuthSecrets)));
 
             services.AddScoped<IUserRepository, EFUserRepository>();
 
