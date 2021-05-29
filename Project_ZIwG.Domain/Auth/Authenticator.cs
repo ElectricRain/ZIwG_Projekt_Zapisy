@@ -76,7 +76,7 @@ namespace Project_ZIwG.Domain.Auth
         private List<Claim> GetClaims(string userId)
         {
             var claims = new List<Claim>();
-            claims.Add(new Claim("id", userId));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, userId));
             claims.Add(new Claim(ClaimTypes.Role, "Admin"));
             return claims;
         }

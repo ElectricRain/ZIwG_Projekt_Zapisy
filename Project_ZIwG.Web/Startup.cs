@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Project_ZIwG.Domain.Auth;
 using Project_ZIwG.Domain.Auth.Interfaces;
 using Project_ZIwG.Domain.Auth.Models;
@@ -12,6 +13,7 @@ using Project_ZIwG.Domain.UserGetter;
 using Project_ZIwG.Infrastructure.Interfaces;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository.Context;
+using System.Text;
 
 namespace Project_ZIwG.Web
 {
@@ -30,12 +32,23 @@ namespace Project_ZIwG.Web
             services.AddControllersWithViews();
             services.AddDbContext<UserContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
                                                           o => o.MigrationsAssembly("Project_ZIwG.Infrastructure")));
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            {
-                options.AccessDeniedPath = "/denied";
-                options.LoginPath = "/login";
-            });
+
             services.Configure<AuthSecrets>(Configuration.GetSection(nameof(AuthSecrets)));
+
+            services.AddAuthentication("JWT_Auth")
+                .AddJwtBearer("JWT_Auth", config =>
+                {
+                    var secretBytes = Encoding.UTF8.GetBytes(Configuration.GetValue<string>("AuthSecrets:Key"));
+                    var key = new SymmetricSecurityKey(secretBytes);
+
+                    config.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidIssuer = Configuration.GetValue<string>("AuthSecrets:Issuer"),
+                        ValidAudience = Configuration.GetValue<string>("AuthSecrets:Audience"),
+                        IssuerSigningKey = key
+                    };
+                });
+
 
             services.AddScoped<IUserRepository, EFUserRepository>();
 

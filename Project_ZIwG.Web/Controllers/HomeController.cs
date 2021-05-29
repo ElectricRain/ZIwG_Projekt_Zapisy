@@ -38,9 +38,17 @@ namespace Project_ZIwG.Web.Controllers
         }
 
         [HttpGet("token")]
-        public string Token(string username, string password)
+        public IActionResult LoginToken(string username, string password)
         {
-            return _authenticator.GetSecurityToken(username, password);
+            var authToken = _authenticator.GetSecurityToken(username, password);
+            if(authToken == null)
+            {
+                return BadRequest("Wrong username or password");
+            }
+            return Ok(new
+            {
+                token = authToken
+            });
         }
 
         [HttpGet("login")]
