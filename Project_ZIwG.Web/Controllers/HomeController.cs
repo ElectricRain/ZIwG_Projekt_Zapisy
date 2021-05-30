@@ -51,27 +51,6 @@ namespace Project_ZIwG.Web.Controllers
             });
         }
 
-        [HttpGet("login")]
-        public IActionResult Login(string returnUrl)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Validate(string username, string password, string returnUrl)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            var claimsPrincipal = _authenticator.GetUserClaimsPrincipal(username, password);
-            if(claimsPrincipal is not null)
-            { 
-                await HttpContext.SignInAsync(claimsPrincipal);
-                return Redirect(returnUrl);
-            }
-            TempData["InvalidLogin"] = "username or password was incorrect!";
-            return View("login");
-        }
-
         [Authorize]
         public async Task<IActionResult> Logout()
         {
