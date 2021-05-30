@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Project_ZIwG.Domain.UserGetter;
 using Project_ZIwG.Infrastructure.Entities;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Project_ZIwG.Web.Controllers
         }
         // GET: api/<UserController>
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IEnumerable<UserEntity> Get()
         {
             return _userGetter.GetUsers();
@@ -26,6 +28,7 @@ namespace Project_ZIwG.Web.Controllers
 
         // GET api/<UserController>/name
         [HttpGet("{name}")]
+        [Authorize(Roles = "Admin")]
         public UserEntity Get(string name)
         {
             return _userGetter.GetByUsername(name);
