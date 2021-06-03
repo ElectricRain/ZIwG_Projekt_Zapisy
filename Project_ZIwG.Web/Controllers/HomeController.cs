@@ -38,30 +38,17 @@ namespace Project_ZIwG.Web.Controllers
         }
 
         [HttpGet("token")]
-        public string Token(string username, string password)
+        public IActionResult LoginToken(string username, string password)
         {
-            return _authenticator.GetSecurityToken(username, password);
-        }
-
-        [HttpGet("login")]
-        public IActionResult Login(string returnUrl)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Validate(string username, string password, string returnUrl)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            var claimsPrincipal = _authenticator.GetUserClaimsPrincipal(username, password);
-            if(claimsPrincipal is not null)
-            { 
-                await HttpContext.SignInAsync(claimsPrincipal);
-                return Redirect(returnUrl);
+            var authToken = _authenticator.GetSecurityToken(username, password);
+            if(authToken == null)
+            {
+                return BadRequest("Wrong username or password");
             }
-            TempData["InvalidLogin"] = "username or password was incorrect!";
-            return View("login");
+            return Ok(new
+            {
+                token = authToken
+            });
         }
 
         [Authorize]

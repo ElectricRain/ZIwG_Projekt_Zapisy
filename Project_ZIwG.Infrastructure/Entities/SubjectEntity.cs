@@ -9,7 +9,7 @@ namespace Project_ZIwG.Infrastructure.Entities
 
         public Guid CourseId { get; set; }
 
-        public Type Type { get; set; }
+        public Guid TypeId { get; set; }
 
         public DayOfWeek Day { get; set; }
 

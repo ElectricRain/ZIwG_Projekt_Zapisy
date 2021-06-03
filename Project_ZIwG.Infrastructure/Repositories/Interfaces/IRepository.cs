@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Project_ZIwG.Infrastructure.Interfaces
+namespace Project_ZIwG.Infrastructure.Repositories.Interfaces
 {
     public interface IRepository<T>
     {

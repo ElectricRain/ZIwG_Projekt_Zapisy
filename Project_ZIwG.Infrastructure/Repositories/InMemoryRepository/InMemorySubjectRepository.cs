@@ -1,5 +1,5 @@
 ﻿using Project_ZIwG.Infrastructure.Entities;
-using Project_ZIwG.Infrastructure.Interfaces;
+using Project_ZIwG.Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +36,7 @@ namespace Project_ZIwG.Infrastructure.Repositories.InMemoryRepository
         public void Update(SubjectEntity entity)
         {
             var subject = _subjectEntities.FirstOrDefault(x => x.Id == entity.Id);
-            subject.Type = entity.Type;
+            subject.TypeId = entity.TypeId;
             subject.StartHour = entity.StartHour;
             subject.EndHour = entity.EndHour;
             subject.Day = entity.Day;

@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Project_ZIwG.Domain.Auth.Interfaces;
-using Project_ZIwG.Infrastructure.Interfaces;
+using Project_ZIwG.Domain.Auth.Models;
+using Project_ZIwG.Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,10 +15,12 @@ namespace Project_ZIwG.Domain.Auth
     public class Authenticator : IAuthenticator
     {
         private readonly IUserRepository _userRepository;
+        private readonly AuthSecrets _options;
 
-        public Authenticator(IUserRepository userRepository)
+        public Authenticator(IUserRepository userRepository, IOptions<AuthSecrets> options)
         {
             _userRepository = userRepository;
+            _options = options.Value;
         }
 
         public ClaimsPrincipal GetUserClaimsPrincipal(string username, string password)
@@ -58,15 +61,14 @@ namespace Project_ZIwG.Domain.Auth
                 return null;
             }
             var issuerSingningKey = new SymmetricSecurityKey(
-                                        Encoding.UTF8.GetBytes("Yq3t6w9z$C&F)J@NcRfUjXn2r4u7x!A%D*G-KaPdSgVkYp3s6v8y/B?E(H+MbQeThWmZq4t7w!z$C&F)J@NcRfUjXn2r5u8x/A?D*G-KaPdSgVkYp3s6v9y$B&E)H+Mb"));
-            var tokenExpirationMinutes = 10;
+                                        Encoding.UTF8.GetBytes(_options.Key));
 
             return new JwtSecurityToken(
-                issuer: "localhost",
-                audience: "localhost",
+                issuer: _options.Issuer,
+                audience: _options.Audience,
                 claims: GetClaims(userId),
                 notBefore: DateTime.Now,
-                expires: DateTime.Now.AddMinutes(tokenExpirationMinutes),
+                expires: DateTime.Now.AddMinutes(_options.ExpirationTime),
                 signingCredentials: new SigningCredentials(issuerSingningKey, SecurityAlgorithms.HmacSha256)
             );
         }
@@ -74,7 +76,7 @@ namespace Project_ZIwG.Domain.Auth
         private List<Claim> GetClaims(string userId)
         {
             var claims = new List<Claim>();
-            claims.Add(new Claim("id", userId));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, userId));
             claims.Add(new Claim(ClaimTypes.Role, "Admin"));
             return claims;
         }

@@ -12,8 +12,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\EFRepository\Context\" />
-  </ItemGroup>
-
 </Project>
