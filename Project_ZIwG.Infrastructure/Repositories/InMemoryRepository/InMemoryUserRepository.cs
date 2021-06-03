@@ -44,6 +44,11 @@ namespace Project_ZIwG.Infrastructure.Repositories.InMemoryRepository
             }
         }
 
+        public List<RolesEntity> GetRoles(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(UserEntity entity)
         {
             var user = _userRepository.FirstOrDefault(x => x.Id == entity.Id);
