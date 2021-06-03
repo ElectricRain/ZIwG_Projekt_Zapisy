@@ -1,5 +1,5 @@
 ﻿using Project_ZIwG.Infrastructure.Entities;
-using Project_ZIwG.Infrastructure.Interfaces;
+using Project_ZIwG.Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

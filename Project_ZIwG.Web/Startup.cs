@@ -10,9 +10,9 @@ using Project_ZIwG.Domain.Auth;
 using Project_ZIwG.Domain.Auth.Interfaces;
 using Project_ZIwG.Domain.Auth.Models;
 using Project_ZIwG.Domain.UserGetter;
-using Project_ZIwG.Infrastructure.Interfaces;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository.Context;
+using Project_ZIwG.Infrastructure.Repositories.Interfaces;
 using System.Text;
 
 namespace Project_ZIwG.Web
@@ -50,7 +50,15 @@ namespace Project_ZIwG.Web
                 });
 
 
+            services.AddScoped<DbContext, UserContext>();
             services.AddScoped<IUserRepository, EFUserRepository>();
+            services.AddScoped<ICourseRepository, EFCourseRepository>();
+            services.AddScoped<IRolesRepository, EFRolesRepository>();
+            services.AddScoped<ISubjectRepository, EFSubjectRepository>();
+            services.AddScoped<ITypeRepository, EFTypeRepository>();
+            services.AddScoped<IUserPermissionRepository, EFUserPermissionRepository>();
+            services.AddScoped<IUserRolesRepository, EFUserRolesRepository>();
+
 
             services.AddScoped<IAuthenticator, Authenticator>();
             services.AddScoped<UserGetter>();

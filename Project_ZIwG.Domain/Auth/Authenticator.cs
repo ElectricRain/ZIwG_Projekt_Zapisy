@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Project_ZIwG.Domain.Auth.Interfaces;
 using Project_ZIwG.Domain.Auth.Models;
-using Project_ZIwG.Infrastructure.Interfaces;
+using Project_ZIwG.Infrastructure.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

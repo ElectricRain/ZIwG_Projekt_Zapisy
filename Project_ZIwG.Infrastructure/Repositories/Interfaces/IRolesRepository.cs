@@ -2,7 +2,7 @@
 
 namespace Project_ZIwG.Infrastructure.Repositories.Interfaces
 {
-    public interface ICourseRepository : IRepository<CourseEntity>
+    public interface IRolesRepository : IRepository<RolesEntity>
     {
     }
 }
