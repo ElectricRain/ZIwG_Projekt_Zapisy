@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,6 +18,12 @@ namespace Project_ZIwG.Infrastructure.Entities
         public string Surname { get; set; }
 
         public string Password { get; set; }
+
+        public virtual List<UserPermissionEntity> UserPermissions { get; set; }
+
+        public virtual List<UserRolesEntity> UserRoles { get; set; }
+
+        public virtual List<UserSubjectEntity> UserSubjects { get; set; }
 
         public UserEntity()
         {

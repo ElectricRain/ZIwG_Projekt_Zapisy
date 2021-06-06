@@ -1,6 +1,7 @@
 ﻿
 using Project_ZIwG.Infrastructure.Entities;
 using Project_ZIwG.Infrastructure.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace Project_ZIwG.Domain.UserGetter
@@ -14,8 +15,8 @@ namespace Project_ZIwG.Domain.UserGetter
             _userRepository = userRepository;
         }
 
-        public UserEntity GetByUsername(string username)
-            => _userRepository.GetByUsername(username);
+        public UserEntity Get(string userId)
+            => _userRepository.Get(new Guid(userId));
 
         public IEnumerable<UserEntity> GetUsers()
             => _userRepository.GetList();

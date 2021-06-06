@@ -6,9 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Project_ZIwG.Domain;
 using Project_ZIwG.Domain.Auth;
 using Project_ZIwG.Domain.Auth.Interfaces;
 using Project_ZIwG.Domain.Auth.Models;
+using Project_ZIwG.Domain.Data;
 using Project_ZIwG.Domain.UserGetter;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository;
 using Project_ZIwG.Infrastructure.Repositories.EFRepository.Context;
@@ -30,7 +32,7 @@ namespace Project_ZIwG.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<UserContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
+            services.AddDbContext<UserContext>(options => options.UseLazyLoadingProxies().UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
                                                           o => o.MigrationsAssembly("Project_ZIwG.Infrastructure")));
 
             services.Configure<AuthSecrets>(Configuration.GetSection(nameof(AuthSecrets)));
@@ -58,10 +60,13 @@ namespace Project_ZIwG.Web
             services.AddScoped<ITypeRepository, EFTypeRepository>();
             services.AddScoped<IUserPermissionRepository, EFUserPermissionRepository>();
             services.AddScoped<IUserRolesRepository, EFUserRolesRepository>();
+            services.AddScoped<IUserSubjectRepository, EFUserSubjectRepository>();
 
 
             services.AddScoped<IAuthenticator, Authenticator>();
             services.AddScoped<UserGetter>();
+            services.AddScoped<SubjectsLogic>();
+            services.AddScoped<SubjectResponse>();
 
             services.AddSwaggerGen();
         }
