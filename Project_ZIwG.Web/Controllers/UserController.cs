@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Project_ZIwG.Domain;
+using Project_ZIwG.Domain.Data;
 using Project_ZIwG.Domain.UserGetter;
 using Project_ZIwG.Infrastructure.Entities;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,26 +15,37 @@ namespace Project_ZIwG.Web.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserGetter _userGetter;
+        private readonly SubjectsLogic _subjectsLogic;
 
-        public UserController(UserGetter userGetter)
+        public UserController(SubjectsLogic subjectsLogic)
         {
-            _userGetter = userGetter;
-        }
-        // GET: api/<UserController>
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public IEnumerable<UserEntity> Get()
-        {
-            return _userGetter.GetUsers();
+            _subjectsLogic = subjectsLogic;
         }
 
         // GET api/<UserController>/name
-        [HttpGet("{name}")]
-        [Authorize(Roles = "Admin")]
-        public UserEntity Get(string name)
+        [HttpGet("subjects")]
+        [Authorize(Roles = "Lecturer")]
+        public SubjectResponse GetSubjects()
         {
-            return _userGetter.GetByUsername(name);
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return _subjectsLogic.GetAllSubjects();
+        }
+
+
+        [HttpGet("mysubjects")]
+        [Authorize(Roles = "Lecturer")]
+        public SubjectResponse GetSubjectsForUser()
+        {
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return _subjectsLogic.GetSubjectsForUser(userId);
+        }
+
+        [HttpGet("possiblesubjects")]
+        [Authorize(Roles = "Lecturer")]
+        public SubjectResponse GetSubjectsPossibleForUser()
+        {
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return _subjectsLogic.GetSubjectsPossibleForUser(userId);
         }
     }
 }

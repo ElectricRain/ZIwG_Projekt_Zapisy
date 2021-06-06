@@ -51,13 +51,6 @@ namespace Project_ZIwG.Web.Controllers
             });
         }
 
-        [Authorize]
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync();
-            return Redirect("/");
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -67,12 +60,6 @@ namespace Project_ZIwG.Web.Controllers
         public IActionResult Swagger()
         {
             return Redirect("/swagger");
-        }
-
-        [HttpGet("denied")]
-        public IActionResult Denied()
-        {
-            return View();
         }
     }
 }

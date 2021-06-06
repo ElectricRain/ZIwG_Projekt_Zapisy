@@ -12,8 +12,8 @@ namespace Project_ZIwG.Infrastructure.Entities
         public Guid UserId { get; set; }
         public Guid CourseId { get; set; }
         public Guid TypeId { get; set; }
-        public UserEntity User { get; set; }
-        public CourseEntity Course { get; set; }
-        public TypeEntity Type { get; set; }
+        public virtual UserEntity User { get; set; }
+        public virtual CourseEntity Course { get; set; }
+        public virtual TypeEntity Type { get; set; }
     }
 }

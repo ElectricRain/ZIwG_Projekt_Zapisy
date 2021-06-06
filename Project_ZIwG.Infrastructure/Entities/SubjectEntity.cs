@@ -17,16 +17,16 @@ namespace Project_ZIwG.Infrastructure.Entities
 
         public DayOfWeek Day { get; set; }
 
-        public DateTime StartHour { get; set; }
+        public TimeSpan StartHour { get; set; }
 
-        public DateTime EndHour { get; set; }
+        public TimeSpan EndHour { get; set; }
 
         public Parity Parity { get; set; }
 
-        public CourseEntity Course { get; set; }
+        public virtual CourseEntity Course { get; set; }
 
-        public TypeEntity Type { get; set; }
+        public virtual TypeEntity Type { get; set; }
 
-        public List<UserSubjectEntity> UserSubjects { get; set; }
+        public virtual UserSubjectEntity UserSubject { get; set; }
     }
 }

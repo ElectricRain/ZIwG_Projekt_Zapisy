@@ -2,7 +2,7 @@
 
 namespace Project_ZIwG.Infrastructure.Repositories.Interfaces
 {
-    interface IUserSubjectRepository : IRepository<UserSubjectEntity>
+    public interface IUserSubjectRepository : IRepository<UserSubjectEntity>
     {
     }
 }

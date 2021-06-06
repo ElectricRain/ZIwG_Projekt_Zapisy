@@ -19,11 +19,11 @@ namespace Project_ZIwG.Infrastructure.Entities
 
         public string Password { get; set; }
 
-        public List<UserPermissionEntity> UserPermissions { get; set; }
+        public virtual List<UserPermissionEntity> UserPermissions { get; set; }
 
         public virtual List<UserRolesEntity> UserRoles { get; set; }
 
-        public List<UserSubjectEntity> UserSubjects { get; set; }
+        public virtual List<UserSubjectEntity> UserSubjects { get; set; }
 
         public UserEntity()
         {

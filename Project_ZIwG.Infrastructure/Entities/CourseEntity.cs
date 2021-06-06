@@ -17,8 +17,8 @@ namespace Project_ZIwG.Infrastructure.Entities
 
         public string Description { get; set; }
 
-        public List<SubjectEntity> Subjects { get; set; }
+        public virtual List<SubjectEntity> Subjects { get; set; }
 
-        public List<UserPermissionEntity> UserPermissions { get; set; }
+        public virtual List<UserPermissionEntity> UserPermissions { get; set; }
     }
 }

@@ -13,8 +13,10 @@ namespace Project_ZIwG.Infrastructure.Entities
 
         public Type Type { get; set; }
 
-        public List<SubjectEntity> Subjects { get; set; }
+        public string FullName { get; set; }
 
-        public List<UserPermissionEntity> UserPermissions { get; set; }
+        public virtual List<SubjectEntity> Subjects { get; set; }
+
+        public virtual List<UserPermissionEntity> UserPermissions { get; set; }
     }
 }

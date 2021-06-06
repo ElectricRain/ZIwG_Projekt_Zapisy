@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Project_ZIwG.Infrastructure.Repositories.Interfaces
 {
-    public interface IRepository<T>
+    public interface IRepository<T> where T : class
     {
          T Get(Guid entityId);
 
