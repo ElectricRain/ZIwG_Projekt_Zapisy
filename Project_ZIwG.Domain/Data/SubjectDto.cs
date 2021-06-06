@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Project_ZIwG.Infrastructure.Entities;
 
 namespace Project_ZIwG.Domain.Data
 {
@@ -10,6 +7,7 @@ namespace Project_ZIwG.Domain.Data
     {
         public Guid SubjectId { get; set; }
         public string CourseName { get; set; }
+        public string Type { get; set; }
         public string Parity { get; set; }
         public TimeSpan StartHour { get; set; }
         public TimeSpan EndHour { get; set; }
