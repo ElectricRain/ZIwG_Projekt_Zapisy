@@ -1,0 +1,15 @@
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\bin\Debug\net5.0\Project_ZIwG.Domain.deps.json
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\bin\Debug\net5.0\Project_ZIwG.Domain.dll
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\bin\Debug\net5.0\ref\Project_ZIwG.Domain.dll
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\bin\Debug\net5.0\Project_ZIwG.Domain.pdb
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\bin\Debug\net5.0\Project_ZIwG.Infrastructure.dll
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\bin\Debug\net5.0\Project_ZIwG.Infrastructure.pdb
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\obj\Debug\net5.0\Project_ZIwG.Domain.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\obj\Debug\net5.0\Project_ZIwG.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\obj\Debug\net5.0\Project_ZIwG.Domain.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\obj\Debug\net5.0\Project_ZIwG.Domain.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\obj\Debug\net5.0\Project_ZIwG.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\obj\Debug\net5.0\Project_ZIwG.Domain.csproj.CopyComplete
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\obj\Debug\net5.0\Project_ZIwG.Domain.dll
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\obj\Debug\net5.0\ref\Project_ZIwG.Domain.dll
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Domain\obj\Debug\net5.0\Project_ZIwG.Domain.pdb

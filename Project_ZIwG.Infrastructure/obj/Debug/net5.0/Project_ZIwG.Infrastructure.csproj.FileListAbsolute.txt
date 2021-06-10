@@ -1,0 +1,15 @@
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\bin\Debug\net5.0\Project_ZIwG.Infrastructure.deps.json
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\bin\Debug\net5.0\Project_ZIwG.Infrastructure.dll
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\bin\Debug\net5.0\ref\Project_ZIwG.Infrastructure.dll
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\bin\Debug\net5.0\Project_ZIwG.Infrastructure.pdb
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\obj\Debug\net5.0\Project_ZIwG.Infrastructure.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\obj\Debug\net5.0\Project_ZIwG.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\obj\Debug\net5.0\Project_ZIwG.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\obj\Debug\net5.0\Project_ZIwG.Infrastructure.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\obj\Debug\net5.0\Project_ZIwG.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\obj\Debug\net5.0\Project_ZIwG.Infrastructure.dll
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\obj\Debug\net5.0\ref\Project_ZIwG.Infrastructure.dll
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\obj\Debug\net5.0\Project_ZIwG.Infrastructure.pdb
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\bin\Debug\net5.0\Project_ZIwG.Infrastructure.runtimeconfig.json
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\bin\Debug\net5.0\Project_ZIwG.Infrastructure.runtimeconfig.dev.json
+C:\Users\User\Documents\GitHub\ZIwG_Projekt_Zapisy\Project_ZIwG.Infrastructure\obj\Debug\net5.0\Project_ZIwG.Infrastructure.genruntimeconfig.cache
