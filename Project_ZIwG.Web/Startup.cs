@@ -38,7 +38,7 @@ namespace Project_ZIwG.Web
                 .WithOrigins("http://localhost:22639", "http://localhost:3000")
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithHeaders("Accept", "Content-Type", "Origin", "X-My-Header"));
+                .WithHeaders("*"));
             });
 
 
