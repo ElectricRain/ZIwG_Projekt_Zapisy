@@ -5,20 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_ZIwG.Infrastructure.Entities
 {
-    public class CourseEntity
+    public class RolesEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public string CourseCode { get; set; }
+        public string RoleName { get; set; }
 
-        public string CourseName { get; set; }
-
-        public string Description { get; set; }
-
-        public virtual List<SubjectEntity> Subjects { get; set; }
-
-        public virtual List<UserPermissionEntity> UserPermissions { get; set; }
+        public virtual List<UserRolesEntity> UserRoles { get; set; }
     }
 }

@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_ZIwG.Infrastructure.Entities
 {
     public class UserEntity
     {
-
-        public Guid Id { get; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
         public string EmailAddress { get; set; }
 
@@ -15,9 +19,24 @@ namespace Project_ZIwG.Infrastructure.Entities
 
         public string Password { get; set; }
 
+        public virtual List<UserPermissionEntity> UserPermissions { get; set; }
+
+        public virtual List<UserRolesEntity> UserRoles { get; set; }
+
+        public virtual List<UserSubjectEntity> UserSubjects { get; set; }
+
+        public UserEntity()
+        {
+            this.Id = Guid.NewGuid();
+            this.Name = string.Empty;
+            this.Surname = string.Empty;
+            this.Password = string.Empty;
+            this.EmailAddress = string.Empty;
+        }
+
         public UserEntity(string Name, string Surname, string Password, string EmailAddress)
         {
-            this.Id = new Guid();
+            this.Id = Guid.NewGuid();
             this.Name = Name;
             this.Surname = Surname;
             this.Password = Password;
