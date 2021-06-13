@@ -47,5 +47,31 @@ namespace Project_ZIwG.Web.Controllers
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             return _subjectsLogic.GetSubjectsPossibleForUser(userId);
         }
+
+        [HttpGet("takensubjects")]
+        [Authorize(Roles = "Lecturer")]
+        public SubjectResponse GetSubjectsTakenByUser()
+        {
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return _subjectsLogic.GetSubjectsTakenByUser(userId);
+        }
+
+        [HttpPost("subjects/signin")]
+        [Authorize(Roles = "Lecturer")]
+        public IActionResult SignForSubject(string subjectId)
+        {
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _subjectsLogic.SignForSubject(userId, subjectId);
+            return new OkResult();
+        }
+
+        [HttpPost("subjects/signout")]
+        [Authorize(Roles = "Lecturer")]
+        public IActionResult SignOutFromSubject(string subjectId)
+        {
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            _subjectsLogic.SignOutFromSubject(userId, subjectId);
+            return new OkResult();
+        }
     }
 }
