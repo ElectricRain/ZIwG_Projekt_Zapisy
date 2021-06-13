@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Project_ZIwG.Domain;
 using Project_ZIwG.Domain.Data;
@@ -13,6 +14,7 @@ namespace Project_ZIwG.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("MyCorsPolicy")]
     public class UserController : ControllerBase
     {
         private readonly SubjectsLogic _subjectsLogic;

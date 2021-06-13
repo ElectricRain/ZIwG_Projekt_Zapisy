@@ -21,6 +21,7 @@ namespace Project_ZIwG.Web
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +32,16 @@ namespace Project_ZIwG.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MyCorsPolicy", builder => builder
+                .WithOrigins("http://localhost:22639", "http://localhost:3000")
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithHeaders("Accept", "Content-Type", "Origin", "X-My-Header"));
+            });
+
+
             services.AddControllersWithViews();
             services.AddDbContext<UserContext>(options => options.UseLazyLoadingProxies().UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
                                                           o => o.MigrationsAssembly("Project_ZIwG.Infrastructure")));
@@ -85,6 +96,9 @@ namespace Project_ZIwG.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors("MyCorsPolicy");
+
             app.UseAuthentication();
             app.UseAuthorization();
 
