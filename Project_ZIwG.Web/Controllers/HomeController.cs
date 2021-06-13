@@ -31,11 +31,6 @@ namespace Project_ZIwG.Web.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult Secured()
-        {
-            return View();
-        }
 
         [HttpGet("token")]
         public IActionResult LoginToken(string username, string password)
@@ -55,11 +50,6 @@ namespace Project_ZIwG.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public IActionResult Swagger()
-        {
-            return Redirect("/swagger");
         }
     }
 }
