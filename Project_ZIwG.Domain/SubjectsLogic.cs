@@ -75,5 +75,57 @@ namespace Project_ZIwG.Domain
             }
             return response;
         }
+
+        public SubjectResponse SignOutFromSubject(string userId, string subjectId)
+        {
+            var response = new SubjectResponse();
+            var takenSubject = _userSubjectRepository.GetList().Where(x => x.SubjectId == new Guid(subjectId) && x.UserId == new Guid(userId)).ToList();
+            if (takenSubject.Count > 0)
+            {
+                var subject = _subjectRepository.Get(new Guid(subjectId));
+                var user = _userRepository.Get(new Guid(userId));
+                _userSubjectRepository.Delete(takenSubject.FirstOrDefault().Id);
+            }
+            return response;
+        }
+
+        public SubjectResponse SignForSubject(string userId, string subjectId)
+        {
+            var response = new SubjectResponse();
+            var takenSubject = _userSubjectRepository.GetList().Where(x => x.SubjectId == new Guid(subjectId)).ToList();
+            if(takenSubject.Count == 0)
+            {
+                var subject = _subjectRepository.Get(new Guid(subjectId));
+                var user = _userRepository.Get(new Guid(userId));
+                var userPermissions = _userPermissionRepository.GetList().Where(x => (x.UserId == user.Id && x.CourseId == subject.CourseId && x.TypeId == subject.TypeId)).ToList();
+                if(userPermissions.Count > 0)
+                {
+                    _userSubjectRepository.Create(new UserSubjectEntity
+                    {
+                        Id = Guid.NewGuid(),
+                        SubjectId = subject.Id,
+                        UserId = user.Id
+                    });
+                }
+            }
+            return response;
+        }
+
+        public SubjectResponse GetSubjectsTakenByUser(string userId)
+        {
+            var response = new SubjectResponse();
+            try
+            {
+                var userIdGUID = new Guid(userId);
+                var takenSubjects = _userSubjectRepository.GetList().Where(x => x.UserId == userIdGUID).ToList();
+                var possibleSubjects = _subjectRepository.GetList().Where(x => takenSubjects.Any(t => t.SubjectId == x.Id)).ToList();
+                response.Subjects = Mapper.MapSubjects(possibleSubjects);
+            }
+            catch (Exception e)
+            {
+                response.Errors = e.Message;
+            }
+            return response;
+        }
     }
 }
