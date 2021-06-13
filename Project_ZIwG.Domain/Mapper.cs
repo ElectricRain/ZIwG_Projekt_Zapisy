@@ -34,7 +34,7 @@ namespace Project_ZIwG.Domain
         {
             return new SubjectEntity
             {
-                Id = Guid.NewGuid(),
+                Id = subjectDto.SubjectId,
                 StartHour = subjectDto.StartHour,
                 EndHour = subjectDto.EndHour,
                 TypeId = subjectDto.TypeId,
