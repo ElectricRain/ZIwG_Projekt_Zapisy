@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project_ZIwG.Web", "Project_ZIwG.Web\Project_ZIwG.Web.csproj", "{25088C30-11C9-4945-9A4D-12878081DDEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_ZIwG.Web", "Project_ZIwG.Web\Project_ZIwG.Web.csproj", "{25088C30-11C9-4945-9A4D-12878081DDEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project_ZIwG.Domain", "Project_ZIwG.Domain\Project_ZIwG.Domain.csproj", "{96900219-503A-4440-8FD5-5346C3F0A56B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_ZIwG.Domain", "Project_ZIwG.Domain\Project_ZIwG.Domain.csproj", "{96900219-503A-4440-8FD5-5346C3F0A56B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project_ZIwG.Infrastructure", "Project_ZIwG.Infrastructure\Project_ZIwG.Infrastructure.csproj", "{94D485FC-50BD-476D-8609-867A3603D10B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_ZIwG.Infrastructure", "Project_ZIwG.Infrastructure\Project_ZIwG.Infrastructure.csproj", "{94D485FC-50BD-476D-8609-867A3603D10B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
