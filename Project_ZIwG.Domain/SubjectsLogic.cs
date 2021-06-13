@@ -127,5 +127,17 @@ namespace Project_ZIwG.Domain
             }
             return response;
         }
+
+        public void CreateSubject(SubjectDto subjectDto)
+        {
+            try
+            {
+                _subjectRepository.Create(Mapper.MapSubjectDto(subjectDto));
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
+        }
     }
 }

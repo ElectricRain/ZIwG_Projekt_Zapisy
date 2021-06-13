@@ -14,15 +14,34 @@ namespace Project_ZIwG.Domain
             {
                 subjects.Add(new SubjectDto { 
                     SubjectId = entity.Id,
+                    CourseId = entity.CourseId,
                     CourseName = entity.Course.CourseName,
+                    TypeId = entity.TypeId,
                     Type = entity.Type.FullName,
+                    Day = Enum.GetName(typeof(DayOfWeek), entity.Day),
+                    DayEnum = entity.Day,
                     Parity = Enum.GetName(typeof(Parity), entity.Parity),
+                    ParityEnum = entity.Parity,
                     StartHour = entity.StartHour,
                     EndHour = entity.EndHour,
                     TakenBy = entity.UserSubject?.User.Name
                 });
             }
             return subjects;
+        }
+
+        public static SubjectEntity MapSubjectDto(SubjectDto subjectDto)
+        {
+            return new SubjectEntity
+            {
+                Id = Guid.NewGuid(),
+                StartHour = subjectDto.StartHour,
+                EndHour = subjectDto.EndHour,
+                TypeId = subjectDto.TypeId,
+                CourseId = subjectDto.CourseId,
+                Day = subjectDto.DayEnum,
+                Parity = subjectDto.ParityEnum,
+            };
         }
     }
 }
