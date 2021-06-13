@@ -22,21 +22,31 @@ namespace Project_ZIwG.Domain
                     DayEnum = entity.Day,
                     Parity = Enum.GetName(typeof(Parity), entity.Parity),
                     ParityEnum = entity.Parity,
-                    StartHour = entity.StartHour,
-                    EndHour = entity.EndHour,
+                    StartHour = timeSpanToString(entity.StartHour),
+                    EndHour = timeSpanToString(entity.EndHour),
                     TakenBy = entity.UserSubject?.User.Name
                 });
             }
             return subjects;
         }
 
+        public static TimeSpan stringToTimeSpan(string hour)
+        {
+            return TimeSpan.Parse(hour);
+        }
+
+        public static string timeSpanToString(TimeSpan timeSpan)
+        {
+            return timeSpan.ToString(@"hh\:mm");
+        }
+
         public static SubjectEntity MapSubjectDto(SubjectDto subjectDto)
         {
             return new SubjectEntity
             {
-                Id = subjectDto.SubjectId,
-                StartHour = subjectDto.StartHour,
-                EndHour = subjectDto.EndHour,
+                Id = Guid.NewGuid(),
+                StartHour = stringToTimeSpan(subjectDto.StartHour),
+                EndHour = stringToTimeSpan(subjectDto.EndHour),
                 TypeId = subjectDto.TypeId,
                 CourseId = subjectDto.CourseId,
                 Day = subjectDto.DayEnum,

@@ -14,8 +14,8 @@ namespace Project_ZIwG.Domain.Data
         public DayOfWeek DayEnum { get; set; }
         public string Parity { get; set; }
         public Parity ParityEnum { get; set; }
-        public TimeSpan StartHour { get; set; }
-        public TimeSpan EndHour { get; set; }
+        public string StartHour { get; set; }
+        public string EndHour { get; set; }
         public string TakenBy { get; set; }
     }
 }
